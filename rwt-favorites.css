@@ -73,7 +73,7 @@
 
 #caption {
 	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 12pt;
+	font-size: 0.9rem;
 	font-weight: bold;
 	letter-spacing: 1px;
 	text-align: center;
@@ -85,11 +85,11 @@
 
 #close-button {
 	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 10pt;
+	font-size: 0.8rem;
 	font-weight: bold;
 	text-align: center;
 	display: inline-block;
-	padding: 0.25rem 0.75rem;
+	padding: 0.15rem 0.75rem;
 	color: var(--color);
 	background-color: var(--accent-background2);
 	border-style: solid;
@@ -180,6 +180,7 @@
 	margin: 0;
 	height: calc(0.6 * var(--favitem-height));
 	overflow-y: hidden;
+	line-height: 1.4;
 }
 #favorite-docs .title {
 	color: var(--accent-color1);
