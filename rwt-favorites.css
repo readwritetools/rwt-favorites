@@ -56,11 +56,11 @@
 	z-index: 1;
 	cursor: default;
 }
+
 #favorite-dialog * {
 	font-family: 'Source Sans Pro', sans-serif;
 	box-sizing: border-box;
 } 
-
 
 /* ---------- dialog parts ---------- */
 #caption-bar {
