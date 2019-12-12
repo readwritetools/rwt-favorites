@@ -145,7 +145,7 @@ export default class RwtFavorites extends HTMLElement {
 			return;
 		var sourceref = this.getAttribute('sourceref');
 
-		var response = await fetch(sourceref);
+		var response = await fetch(sourceref, {cache: "no-cache"});		// send conditional request to server with ETag and If-None-Match
 		if (response.status != 200 && response.status != 304)
 			return;
 		var jsonData = await response.json();
