@@ -14,6 +14,8 @@ import FavoriteItem from './favorite-item.class.js';
 
 export default class RwtFavorites extends HTMLElement {
 
+	// The elementInstance is used to distinguish between multiple instances of this custom element
+	static elementInstance = 0;
 	static nextID = 0;
 	
 	constructor() {
@@ -28,6 +30,7 @@ export default class RwtFavorites extends HTMLElement {
 
 		// properties
 		this.shortcutKey = null;
+		this.collapseSender = `RwtFavorites ${RwtFavorites.elementInstance}`;
 		this.urlPrefix = `${document.location.protocol}//${document.location.hostname}`;
 		
 		// visitor's favorites
@@ -202,14 +205,14 @@ export default class RwtFavorites extends HTMLElement {
 
 	//^ Send an event to close/hide all other registered popups
 	collapseOtherPopups() {
-		var collapseEvent = new CustomEvent('collapse-popup', {detail: { sender: 'RwtFavorites'}});
+		var collapseEvent = new CustomEvent('collapse-popup', {detail: { sender: this.collapseSender }});
 		document.dispatchEvent(collapseEvent);
 	}
 	
 	//^ Listen for an event on the document instructing this dialog to close/hide
 	//  But don't collapse this dialog, if it was the one that generated it
 	onCollapsePopup(event) {
-		if (event.detail.sender == 'RwtFavorites')
+		if (event.detail.sender == this.collapseSender)
 			return;
 		else
 			this.hideDialog();
