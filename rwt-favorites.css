@@ -10,6 +10,7 @@
 =============================================================================*/
 
 :host {
+	--pure-white: #fff;
 	--white: #ccc;
 	--gray: #777;
 	--black: #333;
@@ -18,6 +19,7 @@
 	--pure-black: #000;
 	--js-blue: #76afe8;
 	--yellow: #ffffa4;
+	--red: #ff3d3d;
 	
 	--caption-bar-height: 1.5rem;
 	--favitem-height: 4.5rem;
@@ -100,8 +102,8 @@
 
 #close-button:hover,
 #close-button:visited:hover {
-	color: var(--accent-color1);
-	background-color: var(--accent-background3);
+	color: var(--pure-white);
+	background-color: var(--red);
 	border: 1px solid var(--accent-background2);
 }
 

@@ -226,7 +226,10 @@ export default class RwtFavorites extends HTMLElement {
 		
 		var starClass = (favoriteItem.star == true) ? 'filled-star' : 'open-star';
 		var tooltipTitle = (favoriteItem.star == true) ? 'Remove this from your favorites' : 'Add this to your favorites';
-		var src = `${this.urlPrefix}${favoriteItem.filePath}`;
+		
+		// if the filePath is site-local, add the site's url as a prefix
+		// otherwise the filePath should be a full protocol://host.tld/path-to-file
+		var src =  (favoriteItem.filePath.charAt(0) == '/') ? `${this.urlPrefix}${favoriteItem.filePath}` : favoriteItem.filePath;
 		
 		var s =
 `<button class='${starClass} no-animation' id='${buttonID}' data-file-path='${favoriteItem.filePath}' title='${tooltipTitle}'></button>
