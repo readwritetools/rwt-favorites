@@ -205,7 +205,8 @@ export default class RwtFavorites extends HTMLElement {
 
 	//^ Send an event to close/hide all other registered popups
 	collapseOtherPopups() {
-		var collapseEvent = new CustomEvent('collapse-popup', {detail: { sender: this.collapseSender }});
+		var collapseSender = this.collapseSender;
+		var collapseEvent = new CustomEvent('collapse-popup', {detail: { collapseSender }});
 		document.dispatchEvent(collapseEvent);
 	}
 	
