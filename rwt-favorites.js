@@ -26,10 +26,13 @@ export default class RwtFavorites extends HTMLElement {
 		this.favoriteMessage = null;
 		this.messageText = null;
 
-		// visitor's favorites
-		this.favoriteData = null;
+		// properties
+		this.shortcutKey = null;
 		this.urlPrefix = `${document.location.protocol}//${document.location.hostname}`;
 		
+		// visitor's favorites
+		this.favoriteData = null;
+
 		Object.seal(this);
 	}
 
@@ -55,8 +58,8 @@ export default class RwtFavorites extends HTMLElement {
 		this.shadowRoot.appendChild(styleElement); 
 		
 		this.identifyChildren();
-		
 		this.registerEventListeners();
+		this.initializeShortcutKey();
 		
 		await this.preloadFavorites();
 	}
@@ -115,6 +118,16 @@ export default class RwtFavorites extends HTMLElement {
 		this.closeButton.addEventListener('click', this.onClickClose.bind(this));
 	}
 	
+	//^ Get the user-specified shortcut key. This will be used to open the dialog.
+	//  Valid values are "F1", "F2", etc., specified with the *shortcut attribute on the custom element
+	//  Default value is "F7"
+	initializeShortcutKey() {
+		if (this.hasAttribute('shortcut'))
+			this.shortcutKey = this.getAttribute('shortcut');
+		else
+			this.shortcutKey = 'F7';
+	}
+
 	// Read the visitor's favorites from browser localStorage,
 	// or if this is the first time for any page, fetch the developer-specified initial favorites
 	// from the URL specified in the customElement's sourceref attribute
@@ -173,14 +186,17 @@ export default class RwtFavorites extends HTMLElement {
 	}
 	
 	// close the dialog when user presses the ESC key
+	// toggle the dialog when user presses the assigned shortcutKey
 	onKeydownDocument(event) {		
 		if (event.key == "Escape") {
 			this.hideDialog();
 			event.stopPropagation();
 		}
-		if (event.key == "F7") {
+		// like 'F1', 'F2', etc
+		if (event.key == this.shortcutKey) {
 			this.toggleDialog();
 			event.stopPropagation();
+			event.preventDefault();
 		}
 	}
 
