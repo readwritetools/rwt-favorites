@@ -1,16 +1,16 @@
 {
   "name": "rwt-favorites",
-  "description": "Site-specific favorites dialog, a W3C standard Web Component",
   "version": "1.0.7",
+  "description": "Site-specific favorites dialog, a W3C standard Web Component",
   "author": "Read Write Tools",
   "license": "MIT",
-  "private": true,
-  "scripts": {
-    "bump-version": "npm version patch && git push && git push --tags"
-  },
+  "module": "rwt-shadowbox.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/readwritetools/rwt-favorites.git"
+  },
+  "scripts": {
+    "bump-version": "npm version patch && git push && git push --tags"
   },
   "keywords": [
     "web-component",
@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/readwritetools/rwt-favorites/issues"
   },
-  "homepage": "https://oss.readwritetools.com/web-components/rwt-favorites.blue",
+  "homepage": "https://hub.readwritetools.com/components/favorites.blue",
   "files": [
     "rwt-favorites.blue",
     "rwt-favorites.css",
