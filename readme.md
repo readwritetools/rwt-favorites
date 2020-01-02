@@ -30,7 +30,7 @@
 
 When browsing for information, it's common to glance over page after page of
 "not quite what I'm looking for" stuff. When you finally discover the gem you're
-looking for, you naturally don't want to loose it.
+looking for, you naturally don't want to lose it.
 
 Saving that page to your browser's list of favorites is a common way to keep
 track of important URLs. Unfortunately, the browser's list of favorites tends to
