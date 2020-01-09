@@ -30,6 +30,7 @@ export default class RwtFavorites extends HTMLElement {
 
 		// properties
 		this.shortcutKey = null;
+		RwtFavorites.elementInstance++;
 		this.collapseSender = `RwtFavorites ${RwtFavorites.elementInstance}`;
 		this.urlPrefix = `${document.location.protocol}//${document.location.hostname}`;
 		
