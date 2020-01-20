@@ -15,7 +15,7 @@
 div#favorite-dialog ^display:none {
 	div #caption-bar {
 		p#caption Favorites
-		button#close-button X
+		button #close-button ✕
 	}
 	div #favorite-docs {
 		div .favitem {
