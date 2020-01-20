@@ -159,8 +159,10 @@ Its size may be overridden using CSS by defining new values for `--width` and <s
 
 ```css
 rwt-favorites {
-    --width: 80vw;
-    --height: 80vh;
+    --width: 70vw;
+    --height: 50vh;
+    --bottom: 1rem;
+    --right: 1rem;
 }
 ```
 
