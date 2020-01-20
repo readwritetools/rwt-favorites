@@ -37,6 +37,8 @@
 	/* custom element variables */	
 	--width: 70vw;
 	--height: 50vh;
+	--bottom: 1rem;
+	--right: 1rem;
 
 	/* calculated sizing */
 	--caption-bar-height: 1.5rem;
@@ -47,14 +49,12 @@
 
 #favorite-dialog {
 	position: fixed;
-	bottom: 4rem;
-	right: 2rem;
+	bottom: var(--bottom);
+	right: var(--right);
 	width: var(--width);
 	max-width: 40rem;
-	min-width: 8rem;
 	height: var(--height);
-	max-height: 30rem;
-	min-height: 8rem;	
+	max-height: 40rem;
 	box-sizing: border-box;
 	background-color: var(--background);
 	border-width: 1px;

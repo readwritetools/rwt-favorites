@@ -19,7 +19,7 @@ div#favorite-dialog ^display:none {
 	}
 	div #favorite-docs {
 		div .favitem {
-			// items added with FavoriteDialog.appendFavoriteDoc()
+			// items added with RwtFavorites.appendFavoriteDoc()
 		}
 	}
 	div #favorite-message {
