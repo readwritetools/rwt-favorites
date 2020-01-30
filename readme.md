@@ -44,8 +44,10 @@ reference. It is most useful on large websites.
 #### Prerequisites
 
 The <span>rwt-favorites</span> web component works in any browser that
-supports modern W3C standards. It has no other prerequisites. Distribution and
-installation are done with either NPM or via Github.
+supports modern W3C standards. Templates are written using  notation, which can
+be compiled into HTML using the free <a href='https://hub.readwritetools.com/desktop/rwview.blue'>Read Write View</a>
+desktop app. It has no other prerequisites. Distribution and installation are
+done with either NPM or via Github.
 
 #### Installation using NPM
 
@@ -154,8 +156,8 @@ The format for this JSON file follows this pattern:
 #### Dialog size and position
 
 The dialog is absolutely positioned towards the bottom right of the viewport.
-Its size may be overridden using CSS by defining new values for `--width` and <span>
---height</span>.
+Its size may be overridden using CSS by defining new values for `--width` and `--height`
+.
 
 ```css
 rwt-favorites {
