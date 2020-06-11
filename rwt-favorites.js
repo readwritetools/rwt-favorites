@@ -34,7 +34,7 @@ export default class RwtFavorites extends HTMLElement {
 		// properties
 		this.shortcutKey = null;
 		this.instance = RwtFavorites.elementInstance++;
-		this.collapseSender = `RwtFavorites ${RwtFavorites.elementInstance}`;
+		this.collapseSender = `RwtFavorites ${this.instance}`;
 		this.urlPrefix = `${document.location.protocol}//${document.location.hostname}`;
 		
 		// visitor's favorites
@@ -82,8 +82,9 @@ export default class RwtFavorites extends HTMLElement {
 	// and resolve the promise with a DocumentFragment.
 	getHtmlFragment() {
 		return new Promise(async (resolve, reject) => {
+			var htmlTemplateReady = `RwtFavorites-html-template-ready`;
 			
-			document.addEventListener('html-template-ready', () => {
+			document.addEventListener(htmlTemplateReady, () => {
 				var template = document.createElement('template');
 				template.innerHTML = RwtFavorites.htmlText;
 				resolve(template.content);
@@ -96,10 +97,10 @@ export default class RwtFavorites extends HTMLElement {
 					return;
 				}
 				RwtFavorites.htmlText = await response.text();
-				document.dispatchEvent(new Event('html-template-ready'));
+				document.dispatchEvent(new Event(htmlTemplateReady));
 			}
 			else if (RwtFavorites.htmlText != null) {
-				document.dispatchEvent(new Event('html-template-ready'));
+				document.dispatchEvent(new Event(htmlTemplateReady));
 			}
 		});
 	}
@@ -109,8 +110,9 @@ export default class RwtFavorites extends HTMLElement {
 	// and resolve the promise with that element.
 	getCssStyleElement() {
 		return new Promise(async (resolve, reject) => {
+			var cssTextReady = `RwtFavorites-css-text-ready`;
 
-			document.addEventListener('css-text-ready', () => {
+			document.addEventListener(cssTextReady, () => {
 				var styleElement = document.createElement('style');
 				styleElement.innerHTML = RwtFavorites.cssText;
 				resolve(styleElement);
@@ -123,14 +125,14 @@ export default class RwtFavorites extends HTMLElement {
 					return;
 				}
 				RwtFavorites.cssText = await response.text();
-				document.dispatchEvent(new Event('css-text-ready'));
+				document.dispatchEvent(new Event(cssTextReady));
 			}
 			else if (RwtFavorites.cssText != null) {
-				document.dispatchEvent(new Event('css-text-ready'));
+				document.dispatchEvent(new Event(cssTextReady));
 			}
 		});
 	}
-	
+
 	//^ Identify this component's children
 	identifyChildren() {
 		this.dialog = this.shadowRoot.getElementById('favorite-dialog');
@@ -233,15 +235,14 @@ export default class RwtFavorites extends HTMLElement {
 
 	//^ Send an event to close/hide all other registered popups
 	collapseOtherPopups() {
-		var collapseSender = this.collapseSender;
-		var collapseEvent = new CustomEvent('collapse-popup', {detail: { collapseSender }});
+		var collapseEvent = new CustomEvent('collapse-popup', {detail: this.collapseSender});
 		document.dispatchEvent(collapseEvent);
 	}
 	
 	//^ Listen for an event on the document instructing this dialog to close/hide
 	//  But don't collapse this dialog, if it was the one that generated it
 	onCollapsePopup(event) {
-		if (event.detail.sender == this.collapseSender)
+		if (event.detail == this.collapseSender)
 			return;
 		else
 			this.hideDialog();
