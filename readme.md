@@ -6,10 +6,16 @@
 
 
 
+
+
+
+
 <figure>
 	<img src='/img/components/favorites/favorites-pixaby-mohamed-hassan.jpg' width='100%' />
 	<figcaption></figcaption>
 </figure>
+
+##### Open Source DOM Component
 
 # Favorites
 
@@ -23,7 +29,7 @@
 
 <table>
 	<tr><th>Abstract</th></tr>
-	<tr><td>The <span class=product>rwt-favorites</span> web component uses the browser's local-storage facility to hold a website-specific list of favorite pages. Visitors can add or remove pages from the list using a popup dialog box.</td></tr>
+	<tr><td>The <span class=product>rwt-favorites</span> DOM component uses the browser's local-storage facility to hold a website-specific list of favorite pages. Visitors can add or remove pages from the list using a popup dialog box.</td></tr>
 </table>
 
 ### Motivation
@@ -36,14 +42,21 @@ Saving that page to your browser's list of favorites is a common way to keep
 track of important URLs. Unfortunately, the browser's list of favorites tends to
 get so cluttered over time that it's no longer useful.
 
-This <span>rwt-favorites</span> web component is a way to give a
+This <span>rwt-favorites</span> DOM component is a way to give a
 similar functionality to your visitors, but on a local website basis. Users can
 save pages for later in-depth reading, or for follow-up work, or for ready
 reference. It is most useful on large websites.
 
+#### In the wild
+
+To see an example of this component in use, visit the <a href='https://bluephrase.com'><span class=bp>BLUE</span><span class=phrase>PHRASE</span></a>
+website and press <kbd>F8</kbd> "Favorites". To understand what's going on under
+the hood, use the browser's inspector to view the HTML source code and network
+activity, and follow along as you read this documentation.
+
 #### Prerequisites
 
-The <span>rwt-favorites</span> web component works in any browser that
+The <span>rwt-favorites</span> DOM component works in any browser that
 supports modern W3C standards. Templates are written using <span>BLUE</span><span>
 PHRASE</span> notation, which can be compiled into HTML using the free <a href='https://hub.readwritetools.com/desktop/rwview.blue'>Read Write View</a>
 desktop app. It has no other prerequisites. Distribution and installation are
@@ -68,14 +81,14 @@ on your development computer.
 npm init
 ```
 
-   * Download and install the web component using the command:
+   * Download and install the DOM component using the command:
 ```bash
 npm install rwt-favorites
 ```
 
 
-Important note: This web component uses Node.js and NPM and `package.json` as a
-convenient *distribution and installation* mechanism. The web component itself
+Important note: This DOM component uses Node.js and NPM and `package.json` as a
+convenient *distribution and installation* mechanism. The DOM component itself
 does not need them.
 
 #### Installation using Github
@@ -83,14 +96,14 @@ does not need them.
 If you are more comfortable using Github for installation, follow these steps:
 
    * Create a directory `node_modules` in the root of your web project.
-   * Clone the <span>rwt-favorites</span> web component into it using the
+   * Clone the <span>rwt-favorites</span> DOM component into it using the
       command:
 ```bash
 git clone https://github.com/readwritetools/rwt-favorites.git
 ```
 
 
-### Using the web component
+### Using the DOM component
 
 After installation, you need to add four things to your HTML page to make use of
 it.
@@ -200,9 +213,22 @@ The component issues life-cycle events.
 	<dd>Sent when the component is fully loaded and ready to be used. As a convenience you can use the <code>waitOnLoading()</code> method which returns a promise that resolves when the <code>component-loaded</code> event is received. Call this asynchronously with <code>await</code>.</dd>
 </dl>
 
+---
+
+### Reference
+
+
+<table>
+	<tr><td><img src='/img/read-write-hub.png' alt='DOM components logo' width=40 /></td>	<td>Documentation</td> 		<td><a href='https://hub.readwritetools.com/components/favorites.blue'>READ WRITE HUB</a></td></tr>
+	<tr><td><img src='/img/git.png' alt='git logo' width=40 /></td>	<td>Source code</td> 			<td><a href='https://github.com/readwritetools/rwt-favorites'>github</a></td></tr>
+	<tr><td><img src='/img/dom-components.png' alt='DOM components logo' width=40 /></td>	<td>Component catalog</td> 	<td><a href='https://domcomponents.com/favorites.blue'>DOM COMPONENTS</a></td></tr>
+	<tr><td><img src='/img/npm.png' alt='npm logo' width=40 /></td>	<td>Package installation</td> <td><a href='https://www.npmjs.com/package/rwt-favorites'>npm</a></td></tr>
+	<tr><td><img src='/img/read-write-stack.png' alt='Read Write Stack logo' width=40 /></td>	<td>Publication venue</td>	<td><a href='https://readwritestack.com/components/favorites.blue'>READ WRITE STACK</a></td></tr>
+</table>
+
 ### License
 
-The <span>rwt-favorites</span> web component is licensed under the MIT
+The <span>rwt-favorites</span> DOM component is licensed under the MIT
 License.
 
 <img src='/img/blue-seal-mit.png' width=80 align=right />
@@ -214,13 +240,4 @@ License.
 	<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
 	<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
 </details>
-
-### Availability
-
-
-<table>
-	<tr><td>Source code</td> 			<td><a href='https://github.com/readwritetools/rwt-favorites'>github</a></td></tr>
-	<tr><td>Package installation</td> <td><a href='https://www.npmjs.com/package/rwt-favorites'>NPM</a></td></tr>
-	<tr><td>Documentation</td> 		<td><a href='https://hub.readwritetools.com/components/favorites.blue'>Read Write Hub</a></td></tr>
-</table>
 

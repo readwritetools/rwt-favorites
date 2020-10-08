@@ -1,7 +1,7 @@
 {
   "name": "rwt-favorites",
   "version": "1.0.19",
-  "description": "Site-specific favorites dialog, a W3C standard Web Component",
+  "description": "Site-specific favorites dialog, a standards-based DOM Component",
   "author": "Read Write Tools",
   "license": "MIT",
   "module": "rwt-shadowbox.js",
