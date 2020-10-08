@@ -1,6 +1,6 @@
 {
   "name": "rwt-favorites",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "Site-specific favorites dialog, a standards-based DOM Component",
   "author": "Read Write Tools",
   "license": "MIT",
