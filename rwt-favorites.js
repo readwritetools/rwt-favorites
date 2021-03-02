@@ -30,41 +30,41 @@ export default class RwtFavorites extends HTMLElement {
                 mode: 'open'
             }), this.shadowRoot.appendChild(t), this.shadowRoot.appendChild(e), this.identifyChildren(), 
             this.registerEventListeners(), this.initializeShortcutKey(), await this.preloadFavorites(), 
-            this.sendComponentLoaded();
+            this.sendComponentLoaded(), this.validate();
         } catch (t) {
             console.log(t.message);
         }
     }
     getHtmlFragment() {
         return new Promise((async (t, e) => {
-            var i = `${Static.componentName}-html-template-ready`;
-            if (document.addEventListener(i, (() => {
+            var a = `${Static.componentName}-html-template-ready`;
+            if (document.addEventListener(a, (() => {
                 var e = document.createElement('template');
                 e.innerHTML = Static.htmlText, t(e.content);
             })), 1 == this.instance) {
-                var a = await fetch(Static.htmlURL, {
+                var i = await fetch(Static.htmlURL, {
                     cache: 'no-cache',
                     referrerPolicy: 'no-referrer'
                 });
-                if (200 != a.status && 304 != a.status) return void e(new Error(`Request for ${Static.htmlURL} returned with ${a.status}`));
-                Static.htmlText = await a.text(), document.dispatchEvent(new Event(i));
-            } else null != Static.htmlText && document.dispatchEvent(new Event(i));
+                if (200 != i.status && 304 != i.status) return void e(new Error(`Request for ${Static.htmlURL} returned with ${i.status}`));
+                Static.htmlText = await i.text(), document.dispatchEvent(new Event(a));
+            } else null != Static.htmlText && document.dispatchEvent(new Event(a));
         }));
     }
     getCssStyleElement() {
         return new Promise((async (t, e) => {
-            var i = `${Static.componentName}-css-text-ready`;
-            if (document.addEventListener(i, (() => {
+            var a = `${Static.componentName}-css-text-ready`;
+            if (document.addEventListener(a, (() => {
                 var e = document.createElement('style');
                 e.innerHTML = Static.cssText, t(e);
             })), 1 == this.instance) {
-                var a = await fetch(Static.cssURL, {
+                var i = await fetch(Static.cssURL, {
                     cache: 'no-cache',
                     referrerPolicy: 'no-referrer'
                 });
-                if (200 != a.status && 304 != a.status) return void e(new Error(`Request for ${Static.cssURL} returned with ${a.status}`));
-                Static.cssText = await a.text(), document.dispatchEvent(new Event(i));
-            } else null != Static.cssText && document.dispatchEvent(new Event(i));
+                if (200 != i.status && 304 != i.status) return void e(new Error(`Request for ${Static.cssURL} returned with ${i.status}`));
+                Static.cssText = await i.text(), document.dispatchEvent(new Event(a));
+            } else null != Static.cssText && document.dispatchEvent(new Event(a));
         }));
     }
     identifyChildren() {
@@ -91,10 +91,10 @@ export default class RwtFavorites extends HTMLElement {
                 referrerPolicy: 'no-referrer'
             });
             if (200 == e.status || 304 == e.status) {
-                var i = await e.json();
-                if ('Array' == i.constructor.name) for (let t = 0; t < i.length; t++) {
-                    var a = i[t];
-                    'Object' == a.constructor.name && 'filePath' in a && this.favoriteData.addPage(a.filePath, a.title, a.description, a.star);
+                var a = await e.json();
+                if ('Array' == a.constructor.name) for (let t = 0; t < a.length; t++) {
+                    var i = a[t];
+                    'Object' == i.constructor.name && 'filePath' in i && this.favoriteData.addPage(i.filePath, i.title, i.description, i.star);
                 }
             }
         }
@@ -134,19 +134,19 @@ export default class RwtFavorites extends HTMLElement {
     appendFavoriteDoc(t) {
         var e = document.createElement('div');
         e.className = 'favitem', Static.nextID++;
-        var i = `favitem${Static.nextID}`, a = 1 == t.star ? 'filled-star' : 'open-star', s = 1 == t.star ? 'Remove this from your favorites' : 'Add this to your favorites', o = '/' == t.filePath.charAt(0) ? `${this.urlPrefix}${t.filePath}` : t.filePath, n = `<button class='${a} no-animation' id='${i}' data-file-path='${t.filePath}' title='${s}'></button>\n<a href='${o}'>\n\t<p class='textline'><span class='title'>${t.title}</span> <span class='description'>${t.description}</span></p>\n\t<p class='url'>${o}</p>\n</a>`;
-        e.innerHTML = n, this.favoriteDocs.appendChild(e), this.shadowRoot.getElementById(i).addEventListener('click', this.onClickStar.bind(this));
+        var a = `favitem${Static.nextID}`, i = 1 == t.star ? 'filled-star' : 'open-star', o = 1 == t.star ? 'Remove this from your favorites' : 'Add this to your favorites', s = '/' == t.filePath.charAt(0) ? `${this.urlPrefix}${t.filePath}` : t.filePath, n = `<button class='${i} no-animation' id='${a}' data-file-path='${t.filePath}' title='${o}'></button>\n<a href='${s}'>\n\t<p class='textline'><span class='title'>${t.title}</span> <span class='description'>${t.description}</span></p>\n\t<p class='url'>${s}</p>\n</a>`;
+        e.innerHTML = n, this.favoriteDocs.appendChild(e), this.shadowRoot.getElementById(a).addEventListener('click', this.onClickStar.bind(this));
     }
     onClickClose(t) {
         this.hideDialog(), t.stopPropagation();
     }
     onClickStar(t) {
-        var e = t.target, i = e.getAttribute('data-file-path');
+        var e = t.target, a = e.getAttribute('data-file-path');
         e.classList.contains('filled-star') ? (e.classList.remove('no-animation'), e.classList.remove('filled-star'), 
-        e.classList.add('open-star'), e.title = 'Add this to your favorites', this.favoriteData.unstarFavorite(i), 
+        e.classList.add('open-star'), e.title = 'Add this to your favorites', this.favoriteData.unstarFavorite(a), 
         this.messageText.innerText = '✗ Removed', this.messageText.style.color = 'var(--yellow)') : (e.classList.remove('no-animation'), 
         e.classList.remove('open-star'), e.classList.add('filled-star'), e.title = 'Remove this from your favorites', 
-        this.favoriteData.starFavorite(i), this.messageText.innerText = '✓ Added', this.messageText.style.color = 'var(--title-blue)'), 
+        this.favoriteData.starFavorite(a), this.messageText.innerText = '✓ Added', this.messageText.style.color = 'var(--title-blue)'), 
         this.favoriteData.writeToStorage(), t.stopPropagation();
     }
     toggleDialog() {
@@ -160,6 +160,47 @@ export default class RwtFavorites extends HTMLElement {
     }
     hideDialog() {
         'block' == this.dialog.style.display && (this.dialog.style.display = 'none', this.favoriteData.writeToStorage());
+    }
+    async validate() {
+        if (1 == this.instance) {
+            var t = (o = window.location.hostname).split('.'), e = 25;
+            if (t.length >= 2) {
+                var a = t[t.length - 2].charAt(0);
+                (a < 'a' || a > 'z') && (a = 'q'), e = a.charCodeAt(a) - 97, e = Math.max(e, 0), 
+                e = Math.min(e, 25);
+            }
+            var i = new Date;
+            i.setUTCMonth(0, 1), (Math.floor((Date.now() - i) / 864e5) + 1) % 26 == e && window.setTimeout(this.authenticate.bind(this), 5e3);
+            var o = window.location.hostname, s = `Unregistered ${Static.componentName} component.`;
+            try {
+                var n = (await import('../../rwt-registration-keys.js')).default;
+                for (let t = 0; t < n.length; t++) {
+                    var r = n[t];
+                    if (r.hasOwnProperty('product-key') && r['product-key'] == Static.componentName) return void (o != r.registration && console.warn(`${s} See https://readwritetools.com/licensing.blue to learn more.`));
+                }
+                console.warn(`${s} rwt-registration-key.js file missing "product-key": "${Static.componentName}"`);
+            } catch (t) {
+                console.warn(`${s} rwt-registration-key.js missing from website's root directory.`);
+            }
+        }
+    }
+    async authenticate() {
+        var t = encodeURIComponent(window.location.hostname), e = encodeURIComponent(window.location.href), a = encodeURIComponent(Registration.registration), i = encodeURIComponent(Registration['customer-number']), o = encodeURIComponent(Registration['access-key']), s = {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'omit',
+            cache: 'no-cache',
+            headers: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            body: `product-name=${Static.componentName}&hostname=${t}&href=${e}&registration=${a}&customer-number=${i}&access-key=${o}`
+        };
+        try {
+            var n = await fetch('https://validation.readwritetools.com/v1/genuine/component', s);
+            if (200 == n.status) await n.json();
+        } catch (t) {
+            console.info(t.message);
+        }
     }
 }
 
